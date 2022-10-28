@@ -56,11 +56,6 @@ repos:
     hooks:
       - id: setup-cfg-fmt
         args: ["--include-version-classifiers"]
-  - repo: https://github.com/Lucas-C/pre-commit-hooks-safety
-    rev: v1.3.0
-    hooks:
-      - id: python-safety-dependencies-check
-        files: requirements.txt
   - repo: https://github.com/pycqa/isort
     rev: 5.10.1
     hooks:
