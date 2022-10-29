@@ -1,7 +1,6 @@
 # PyPBar
 
 [![Hits-of-Code](https://hitsofcode.com/github/koviubi56/pypbar?branch=main)](https://hitsofcode.com/github/koviubi56/pypbar/view?branch=main)
-<!-- ![Codacy grade](https://img.shields.io/codacy/grade/42424fcd258a44f3a0303ca6ca535f67) -->
 ![CodeFactor Grade](https://img.shields.io/codefactor/grade/github/koviubi56/pypbar)
 [![pre-commit.ci status](https://results.pre-commit.ci/badge/github/koviubi56/pypbar/main.svg)](https://results.pre-commit.ci/latest/github/koviubi56/pypbar/main)
 ![CircleCI](https://img.shields.io/circleci/build/github/koviubi56/pypbar)
