@@ -20,6 +20,7 @@ name = "pypbar"
 description = "Python ProgressBar"
 requires-python = ">=3.7"
 dependencies = ["typing_extensions>=4.0.0"]
+readme.content-type = "text/markdown"
 dynamic = ["version", "readme", "authors"]
 
 [tool.setuptools]
