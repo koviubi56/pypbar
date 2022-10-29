@@ -1,9 +1,9 @@
 # PyPBar
 
 [![Hits-of-Code](https://hitsofcode.com/github/koviubi56/pypbar?branch=main)](https://hitsofcode.com/github/koviubi56/pypbar/view?branch=main)
+[![Codacy Badge](https://app.codacy.com/project/badge/Grade/7b37a885e4454ac0aeba1721197712a9)](https://www.codacy.com/gh/koviubi56/pypbar/dashboard?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=koviubi56/pypbar&amp;utm_campaign=Badge_Grade)
 ![CodeFactor Grade](https://img.shields.io/codefactor/grade/github/koviubi56/pypbar)
 [![pre-commit.ci status](https://results.pre-commit.ci/badge/github/koviubi56/pypbar/main.svg)](https://results.pre-commit.ci/latest/github/koviubi56/pypbar/main)
-![CircleCI](https://img.shields.io/circleci/build/github/koviubi56/pypbar)
 [![Code style: black](https://img.shields.io/badge/code%20style-black-000000.svg)](https://github.com/psf/black)
 ![semantic-release](https://img.shields.io/badge/%F0%9F%93%A6%F0%9F%9A%80-semantic--release-e10079.svg)
 ![GitHub](https://img.shields.io/github/license/koviubi56/pypbar)
