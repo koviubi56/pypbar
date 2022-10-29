@@ -28,7 +28,7 @@ PyPBar requires Python 3.7 and `typing_extensions>=4.0.0`. _[See the `requiremen
 
 ## Usage
 
-```python
+```py
 import pypbar
 import time
 

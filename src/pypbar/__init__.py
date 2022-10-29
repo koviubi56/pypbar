@@ -22,7 +22,7 @@ __author__ = "Koviubi56"
 __email__ = "koviubi56@duck.com"
 __license__ = "GNU GPLv3"
 __copyright__ = "Copyright (C) 2022 Koviubi56"
-__description__ = "Peer to peer socket network"
+__description__ = "Python ProgressBar"
 __url__ = "https://github.com/koviubi56/pypbar"
 
 import dataclasses
