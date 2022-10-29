@@ -1,34 +1,3 @@
 [build-system]
 requires = ["setuptools>=42.0", "wheel"]
 build-backend = "setuptools.build_meta"
-
-[project]
-classifiers = [
-    "License :: OSI Approved :: GNU General Public License v3 or later (GPLv3+)",
-    "Development Status :: 4 - Beta",
-    "Programming Language :: Python :: 3",
-    "Programming Language :: Python :: 3 :: Only",
-    "Programming Language :: Python :: 3.7",
-    "Programming Language :: Python :: 3.8",
-    "Programming Language :: Python :: 3.9",
-    "Programming Language :: Python :: 3.10",
-    "Programming Language :: Python :: 3.11",
-]
-keywords = ['progress', 'bar', 'progressbar']
-license = { file = "LICENSE" }
-name = "pypbar"
-description = "Python ProgressBar"
-requires-python = ">=3.7"
-dependencies = ["typing_extensions>=4.0.0"]
-readme = "README.md"
-dynamic = ["version", "authors"]
-
-[tool.setuptools]
-platforms = ["unix", "linux", "osx", "cygwin", "win32"]
-zip-safe = false
-
-[tool.setuptools.dynamic]
-version = { attr = "pypbar.__version__" }
-
-[tool.isort]
-profile = "black"
