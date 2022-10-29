@@ -48,7 +48,7 @@ Questions should be asked in the [Discussions tab](https://github.com/koviubi56/
 
 Feature requests and bug reports should be reported in the [Issues tab](https://github.com/koviubi56/pypbar/issues/new/choose).
 
-Security vulnerabilities should be reported as described in our [Security policy](https://github.com/koviubi56/pypbar/security/policy) (the [SECURITY.md(SECURITY.md) file).
+Security vulnerabilities should be reported as described in our [Security policy](https://github.com/koviubi56/pypbar/security/policy) (the [SECURITY.md](SECURITY.md) file).
 
 ## Contributing
 
