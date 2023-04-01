@@ -12,6 +12,7 @@ ignore = [
     "ANN102",
     "COM812",
     "D",
+    "EM101",
     "EM102",
     "FBT",
     "G004",
@@ -48,5 +49,3 @@ check_command = "{pyexe} -m isort --profile black -c {path}"
 [[tool.lemming.linters]]
 packages = ["pyroma"]
 command = "{pyexe} -m pyroma {path}"
-
-

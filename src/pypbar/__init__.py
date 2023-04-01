@@ -60,7 +60,7 @@ MEDIUM_DENSITY_DOTTED = "\u2592"
 LOW_DENSITY_DOTTED = "\u2591"
 
 
-def is_nan(obj: Any) -> bool:
+def is_nan(obj: Any) -> bool:  # noqa: ANN401
     """
     Check if `obj` is nan.
 
@@ -141,7 +141,7 @@ class ShutUp:
 
     @property
     def time_since_started(self) -> float:
-        assert (
+        assert (  # noqa: S101
             self.time_started is not None
         ), "self.time_started MUST NOT be None"
         return time.perf_counter() - self.time_started
@@ -259,13 +259,14 @@ class Bar(Generic[T]):
             if self.calculate_length_for_iterable:
                 try:
                     self.max = len(self.iterable)  # type: ignore
-                except Exception:
+                except Exception:  # noqa: BLE001
                     try:
                         self.iterable = tuple(self.iterable)
-                    except Exception as exc:
+                    except Exception as exc:  # noqa: BLE001
                         warnings.warn(
                             f"{exc.__class__.__name__}: {exc}; iterable and"
-                            " max is set to None"
+                            " max is set to None",
+                            stacklevel=2,
                         )
                         self.iterable = None
                     self.max = (
@@ -298,7 +299,7 @@ class Bar(Generic[T]):
                     yield item
                     if self.allow:
                         self.update()
-                        # self.show()
+                        # // self.show()
         self.exit()
 
     def __next__(self) -> T:
@@ -328,7 +329,7 @@ class Bar(Generic[T]):
         self.start_thread()
         return self
 
-    def __exit__(self, *_: Any) -> None:
+    def __exit__(self, *_: Any) -> None:  # noqa: ANN401
         """Exit the context manager. This function stops the progress bar; it
         calls exit."""
         self.exit()
@@ -515,7 +516,7 @@ class Bar(Generic[T]):
         )
 
     def _text_shutup(self) -> str:
-        assert isinstance(
+        assert isinstance(  # noqa: S101
             self.iterable_or_max, ShutUp
         ), "to use _text_shutup iterable_or_max MUST be an instance of ShutUp"
         _desc = f"{self.desc} " if self.desc else ""
@@ -563,7 +564,7 @@ class Bar(Generic[T]):
         Returns:
             str: Text of the progress bar with the max.
         """
-        assert (
+        assert (  # noqa: S101
             self.max is not None
         ), "to use _text_with_max max MUST NOT be None"
         _desc = f"{self.desc} " if self.desc else ""
