@@ -24,7 +24,7 @@ ignore = [
     "TRY400",
 ]
 line-length = 79
-target-version = "py38"
+target-version = "py37"
 
 [[tool.lemming.linters]]
 packages = ["ruff"]

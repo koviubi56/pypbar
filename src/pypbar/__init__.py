@@ -35,7 +35,6 @@ import time
 import warnings
 from math import nan
 from typing import (
-    Any,
     Collection,
     Generator,
     Generic,
@@ -43,12 +42,10 @@ from typing import (
     List,
     NoReturn,
     Optional,
-    Protocol,
-    TypeVar,
     Union,
 )
 
-from typing_extensions import Self, TypeAlias
+from typing_extensions import Any, Protocol, Self, TypeAlias, TypeVar
 
 Number: TypeAlias = Union[int, float]
 T = TypeVar("T")
