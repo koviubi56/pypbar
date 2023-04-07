@@ -790,7 +790,8 @@ class External(Bar):
 
     def update_with_new(self, extra: int) -> None:
         """
-        Update the progress bar with `extra`. This function also updates `.last_time`. This function does NOT show the progress bar!
+        Update the progress bar with `extra`. This function also updates
+        `.last_time`. This function does NOT show the progress bar!
 
         Args:
             extra (int): The amount to add to `.pos`
@@ -833,7 +834,8 @@ class External(Bar):
         `leave is False`.
 
         Args:
-            force (bool, optional): Force exiting even if `self.allow is False`. Defaults to False.
+            force (bool, optional): Force exiting even if
+            `self.allow is False`. Defaults to False.
         """
         if (not self.allow) and (not force):
             return
