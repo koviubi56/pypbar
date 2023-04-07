@@ -783,7 +783,10 @@ class External(Bar):
         Returns:
             float: Percent of the progress bar. [0,1]
         """
-        return self.pos / self.max
+        try:
+            return self.pos / self.max
+        except ZeroDivisionError:
+            return 0
 
     def update_with_new(self, extra: int) -> None:
         """
