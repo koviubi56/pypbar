@@ -424,7 +424,7 @@ class Bar(Generic[T]):
         return str(int(num)).zfill(width)
 
     @classmethod
-    def second_to_str(cls, seconds: float) -> str:
+    def second_to_str(cls, seconds: float) -> str:  # noqa: PLR0911
         """
         Convert a number of seconds to a string.
 
@@ -437,6 +437,10 @@ class Bar(Generic[T]):
         if is_nan(seconds):
             return "?"
 
+        if seconds < 0.0001:
+            return f"{cls.zfill_num(seconds * 1e9, 1)} ns"
+        if seconds < 0.001:
+            return f"{cls.zfill_num(seconds * 1e6, 1)} µs"
         if seconds < 1:
             return f"{cls.zfill_num(seconds * 1000, 1)} ms"
         if seconds < 60:
