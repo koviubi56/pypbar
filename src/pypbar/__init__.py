@@ -58,6 +58,30 @@ SQUARE = "\u25a0"
 HIGH_DENSITY_DOTTED = "\u2593"
 MEDIUM_DENSITY_DOTTED = "\u2592"
 LOW_DENSITY_DOTTED = "\u2591"
+SPINNERS = (
+    [TOP_HALF_BLOCK, SQUARE, BOTTOM_HALF_BLOCK, SQUARE],
+    ["|", "/", "-", "\\"],
+    [
+        ".  ",
+        ".. ",
+        "...",
+        " ..",
+        "  .",
+        " ..",
+        "...",
+        ".. ",
+        ".  ",
+        "   ",
+    ],
+    [
+        LOW_DENSITY_DOTTED,
+        MEDIUM_DENSITY_DOTTED,
+        HIGH_DENSITY_DOTTED,
+        BLOCK,
+        HIGH_DENSITY_DOTTED,
+        MEDIUM_DENSITY_DOTTED,
+    ],
+)
 
 
 def is_nan(obj: Any) -> bool:  # noqa: ANN401
@@ -205,34 +229,7 @@ class Bar(Generic[T]):
         self.start_time = time.perf_counter()
         self.last_time = time.perf_counter()
         self.pos = 0
-        self.spinners = itertools.cycle(
-            secrets.choice(
-                (
-                    [TOP_HALF_BLOCK, SQUARE, BOTTOM_HALF_BLOCK, SQUARE],
-                    ["|", "/", "-", "\\"],
-                    [
-                        ".  ",
-                        ".. ",
-                        "...",
-                        " ..",
-                        "  .",
-                        " ..",
-                        "...",
-                        ".. ",
-                        ".  ",
-                        "   ",
-                    ],
-                    [
-                        LOW_DENSITY_DOTTED,
-                        MEDIUM_DENSITY_DOTTED,
-                        HIGH_DENSITY_DOTTED,
-                        BLOCK,
-                        HIGH_DENSITY_DOTTED,
-                        MEDIUM_DENSITY_DOTTED,
-                    ],
-                )
-            )
-        )
+        self.spinners = itertools.cycle(secrets.choice(SPINNERS))
         self.spinner = next(self.spinners)
         self.times: List[float] = []
         self.lock = threading.Lock()
