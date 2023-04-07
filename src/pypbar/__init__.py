@@ -41,6 +41,7 @@ from typing import (
     Generic,
     Iterable,
     List,
+    NoReturn,
     Optional,
     Protocol,
     TypeVar,
@@ -713,8 +714,141 @@ class Bar(Generic[T]):
             )
 
 
+def not_in_external(*_: Any, **__: Any) -> NoReturn:  # noqa: ANN401
+    raise AttributeError("External bar doesn't have that attribute")
+
+
+class External(Bar):
+    """
+    A progress bar, but the position is obtained from an external source (for
+    example: downloading a file)
+    """
+
+    def __init__(
+        self,
+        max_: int,
+        desc: Optional[str] = None,
+        unit: str = "it",
+    ) -> None:
+        """
+        Create an `External` object.
+        Most other attributes (e.g. fillchar, flush, stream, leave, etc...)
+        can still be changed manually, but I just didn't want to add them here.
+
+        Args:
+            max_ (int): The maximum value. Required!
+            desc (Optional[str], optional): The description. Defaults to None.
+            unit (str, optional): Unit to use. Defaults to "it".
+        """
+        self.max = max_
+        # most other attributes still exist and are in use, but these are the
+        # more important ones. if the user wants to modify another, they will
+        # have to modify the attribute manually
+        self.desc = desc
+        self.unit = unit
+
+        # --- __post_init__ ---
+        self.iterable = None
+        self.underflow = None
+        self.start_time = time.perf_counter()
+        self.last_time = time.perf_counter()
+        self.pos = 0
+        self.spinners = itertools.cycle(secrets.choice(SPINNERS))
+        self.spinner = next(self.spinners)
+        self.lock = threading.Lock()
+        self.allow = True
+
+    # these attributes do not exist
+    __iter__ = (
+        __next__
+    ) = update = _text_no_max = _text_shutup = not_in_external
+
+    def get_avg_time(self) -> float:
+        """
+        Get the average time for one position to change.
+
+        Returns:
+            float: Average time for one position to change or nan. (0,inf)
+        """
+        try:
+            return (self.last_time - self.start_time) / self.pos
+        except ZeroDivisionError:
+            return nan
+
+    def get_percent(self) -> float:
+        """
+        Get the percent of the progress bar.
+        Equals to:
+        ```py
+        self.pos / self.max
+        ```
+
+        Returns:
+            float: Percent of the progress bar. [0,1]
+        """
+        return self.pos / self.max
+
+    def update_with_new(self, extra: int) -> None:
+        """
+        Update the progress bar with `extra`. This function also updates `.last_time`. This function does NOT show the progress bar!
+
+        Args:
+            extra (int): The amount to add to `.pos`
+        """
+        self.pos += extra
+        self.last_time = time.perf_counter()
+
+    def show(self, *, from_thread: bool = False) -> bool:
+        """
+        Write the current progress bar to the stream, and flush if needed.
+
+        Args:
+            from_thread (bool, optional): Whether or not this function was
+            called from the thread. You should leave it as False. Defaults to
+            False.
+
+        Raises:
+            ValueError: If $ is in the description
+
+        Returns:
+            bool: `self.allow`
+        """
+        if self.desc and ("$" in self.desc):
+            raise ValueError('Description cannot contain "$"')
+        if not self.allow:
+            return False
+        with self.lock:
+            text = self._text_with_max()
+            if from_thread:
+                self.spinner = next(self.spinners)
+            text = text.replace("$", self.spinner, 1)
+            self._write(text.ljust(shutil.get_terminal_size().columns) + "\r")
+            return True
+
+    def exit(self, *, force: bool = False) -> None:  # noqa: A003
+        """
+        Exit the progress bar.
+        Show the progress bar for the last time (with underflow as necessary),
+        set `self.allow` to False, and hide the progress bar if
+        `leave is False`.
+
+        Args:
+            force (bool, optional): Force exiting even if `self.allow is False`. Defaults to False.
+        """
+        if (not self.allow) and (not force):
+            return
+        if self.pos < self.max:
+            self.underflow = True
+        self.show()
+        self.allow = False
+        if self.leave:
+            self._write("\n")
+        else:
+            self._write("\r" + " " * shutil.get_terminal_size().columns + "\r")
+
+
 if __name__ == "__main__":
-    with Bar[int](100) as bar:
-        for i in bar:
-            bar.write(str(i))
-            time.sleep(i / 10)
+    with External(1_000_000, "downloading", "kB") as bar:
+        while bar.pos != bar.max:
+            bar.update_with_new(1000)
+            time.sleep(0.1)
