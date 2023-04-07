@@ -698,22 +698,22 @@ class Bar(Generic[T]):
 
         Args:
             text (str): Text to write.
-            ljust (bool, optional): Whether to left-justify the text. STRONGLY
-            RECOMMENDED! IF YOU SET THIS TO FALSE, MAKE SURE THAT THE TEXT
-            SHOWN WON'T INTERFERE WITH THE PROGRESS BAR! PLEASE NOTE, THAT THE
-            PROGRESS BAR IS **NOT ONLY** SHOWN WHEN THERE IS A NEW ITERATION!
-            Defaults to True.
+            ljust (bool, optional): Whether to left-justify the text.
         """
         with self.lock:
             self._write(
-                str(text).ljust(shutil.get_terminal_size().columns)
-                if ljust
-                else str(text)
+                (  # noqa: UP034
+                    str(text).ljust(shutil.get_terminal_size().columns)
+                    if ljust
+                    else str(text)
+                )
+                # ? idk if it's needed
+                # // + "\n"
             )
 
 
 if __name__ == "__main__":
-    with Bar[int](1_000_000) as bar:
+    with Bar[int](100) as bar:
         for i in bar:
             bar.write(str(i))
-            time.sleep(i / 10_000)
+            time.sleep(i / 10)
