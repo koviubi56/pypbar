@@ -1,6 +1,6 @@
-# PyPBar
+# PyPBar - DEPRECATED, check out [Enlighten](https://github.com/Rockhopper-Technologies/enlighten)
 
-[![Hits-of-Code](https://hitsofcode.com/github/koviubi56/pypbar?branch=main)](https://hitsofcode.com/github/koviubi56/pypbar/view?branch=main)
+~~[![Hits-of-Code](https://hitsofcode.com/github/koviubi56/pypbar?branch=main)](https://hitsofcode.com/github/koviubi56/pypbar/view?branch=main)
 [![Codacy Badge](https://app.codacy.com/project/badge/Grade/7b37a885e4454ac0aeba1721197712a9)](https://www.codacy.com/gh/koviubi56/pypbar/dashboard?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=koviubi56/pypbar&amp;utm_campaign=Badge_Grade)
 ![CodeFactor Grade](https://img.shields.io/codefactor/grade/github/koviubi56/pypbar)
 [![pre-commit.ci status](https://results.pre-commit.ci/badge/github/koviubi56/pypbar/main.svg)](https://results.pre-commit.ci/latest/github/koviubi56/pypbar/main)
@@ -64,4 +64,4 @@ A list of nice people who helped this project can be found in the [CONTRIBUTORS 
 
 ## License
 
-[GNU GPLv3+](LICENSE)
+[GNU GPLv3+](LICENSE)~~
